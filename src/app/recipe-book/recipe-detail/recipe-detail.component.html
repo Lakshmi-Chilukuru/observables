@@ -1,0 +1,36 @@
+<div class="recipe-detail" >
+    <img [src]="recipe.imagePath" alt={{recipe.name}} width="160px" height="80px">
+    <div class="recipeName">
+        <h1>{{recipe.name}}</h1>
+    </div>
+    <div class="manage-recipe">
+        <button class="manage" dropDownDir
+        (hidingMenus)="hideMenus($event)" [caretTop]="caretTop">
+            Manage <span *ngIf="caretBottom">&#9660;</span
+            ><span *ngIf="caretTop">&#9650;</span>
+          </button>
+          <ul class="caretMenus"   *ngIf="showMenu">
+            <li><a (click)="addShopList()" >To Shopping List</a></li>
+            <li><a (click)="onEditRecipe()">Edit Recipe</a></li>
+            <li><a (click)="deleteRecipe()">Delete Recipe</a></li>
+          </ul>
+    </div>
+    <div class="section desc">
+        <p>{{recipe.description}}</p>
+    </div>
+    <div class="section ingre">
+        <p>Ingredients</p>
+        <div class="shopping-cart">
+            <a href="#" class="shopping-item" *ngFor="let ing of recipe.ingredients">
+                <p>{{ing.name}} (<span>{{ing.amount}}</span>)</p> 
+            </a>
+        </div>
+    </div>
+</div>
+
+<button (click)="componentConfig()">Add Component</button>
+
+<div #container>
+    
+</div>
+

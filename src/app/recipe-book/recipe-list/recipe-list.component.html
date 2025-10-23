@@ -1,0 +1,57 @@
+<div class="mg-20">
+  <div class="btn">
+    <a (click)="newRecipe()" class="add">Add Recipe</a>
+  </div>
+  <div class="hr">
+    <hr />
+  </div>
+  <div class="d">
+    <app-recipe-item
+      *ngFor="let recipeEl of recipes; let i = index"
+      [recipe]="recipeEl"
+      [index]="i"
+    ></app-recipe-item>
+  </div>
+</div>
+
+<input type="text" (input)="inputChange($event)" />
+<div class="cards" >
+  <div class="card" *ngFor="let card of randCards">
+    <div class="card-inner">
+      <div class="card-front">
+        <p>{{ card.que }}</p>
+      </div>
+      <div class="card-back">
+        <p>{{ card.ans }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<select (change)="getMonth($event)">
+  <option *ngFor="let d of months">{{d}}</option>
+</select>
+<div class="sCards">
+<div class="cardD" *ngFor="let card of sstrocks" >
+  <div class="">
+<p>{{card.id}}</p>
+  </div>
+  
+  <p>{{card.ldate}}</p>
+</div>
+</div>
+
+<button (click)="loadMore()">Load Next</button>
+<button (click)="goPrevious()">Previous</button>
+<button (click)="shuffle()">Shuffle</button>
+<div >
+  <div (scroll)="onscRoll()"
+    *ngFor="let notification of upNotify; trackBy: trackById"
+    class="notification"
+  >
+    {{ notification.message }}
+  </div>
+</div>
+
+<ul id="todos"></ul>
+<button id="adBtn">Add List</button>
+

@@ -1,0 +1,15 @@
+<div class="">
+    <app-shopping-list-edit>I am showing</app-shopping-list-edit>
+</div>
+<div class="shopping-cart">
+    <a class="shopping-item" *ngFor="let item of ingredients;let i=index">
+        <p (click)="onEditItem(i)">{{item.name}} (<span>{{item.amount}}</span>)</p> 
+    </a>
+</div>
+<p>Counter:{{counter$ | async}}</p>
+<app-counter-output></app-counter-output>
+<app-counter-controls></app-counter-controls>
+
+
+
+

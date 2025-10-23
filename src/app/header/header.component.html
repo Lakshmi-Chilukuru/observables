@@ -1,0 +1,36 @@
+<nav class="navbar">
+  <div class="navs">
+    <div class="nav-left">
+      <div class="nav-header">
+        <a href="#">Recipe Book</a>
+      </div>
+      <div class="nav-btns">
+        <ul class="mainMenu">
+          <!-- <li><a href="#" (click)="openFeature('recipe')">Recipes</a></li>
+          <li><a href="#" (click)="openFeature('shoppinglist')">ShoppingList</a></li> -->
+          <li routerLinkActive="active"><a [routerLink]="'/recipes'" *ngIf="authenticated">Recipes</a></li>
+          <li routerLinkActive="active"><a [routerLink]="'/auth'" *ngIf="!authenticated">Authenticate</a></li>
+          <li routerLinkActive="active"><a [routerLink]="'/shopList'" >ShoppingList</a></li>
+          <li routerLinkActive="active"><a [routerLink]="'/template'" >Template Driven</a></li>
+          <li routerLinkActive="active"><a [routerLink]="'/reactive'" >Reactive</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="nav-btns ">
+        <button class="manage" dropDownDir [caretTop]="caretTop"
+        (hidingMenus)="hideMenus($event)" *ngIf="authenticated">
+          Manage <span *ngIf="caretBottom">&#9660;</span
+          ><span *ngIf="caretTop">&#9650;</span>
+        </button>
+        <ul class="caretMenus" *ngIf="showMenu" >
+          <li><a (click)="saveData()">Save Data</a></li>
+          <li><a (click)="fetchData()">Fetch Data</a></li>
+          <li><a (click)="logOut()">LogOut</a></li>
+
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+</nav>

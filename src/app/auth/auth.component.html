@@ -1,0 +1,26 @@
+<div style="display: flex;justify-content: center;align-items: center;" *ngIf="error">
+    <p class="error">{{error}}<button type="button" class="close_btn" (click)="closeError()">X</button>
+
+    </p>
+    
+</div>
+
+<form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+    <div>
+        <div class="form-item">
+            <label for="email">Email</label> <br>
+            <input type="text" name="email" id="email" name="email" required email ngModel>
+        </div>
+
+        <div>
+            <label for="password">Password</label><br>
+           <input type="password" name="password" id="password" required ngModel>
+        </div>
+    </div>
+    <button type="submit" [disabled]="!authForm.valid">{{isLoginMode? "Login" : "SignUp"}}</button>
+    <button type="button" (click)="switchMode()">Switch to {{isLoginMode ? "SignUp" : "Login"}}</button>
+</form>
+
+<div class="" style="align-items: center;" *ngIf="isLoading">
+    <app-loader></app-loader>
+    </div>

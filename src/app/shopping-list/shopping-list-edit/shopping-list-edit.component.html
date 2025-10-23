@@ -1,0 +1,96 @@
+<div class="shopping-edit">
+    <!-- Rective Form -->
+    <!-- <form [formGroup]="shoppingEdit" (ngSubmit)="onSubmit()">
+        <div class="form-flex">
+            <div class="form-field">
+                <label for="name" id="name" class="name">Name</label><br>
+                <input type="text" name="name" id="name" class="name" formControlName="name">
+                <div  *ngIf="shoppingEdit.controls['name']?.touched">
+                    <div class="errorForm" *ngIf="name?.errors?.['required']">
+                        {{nameValidator}}
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="form-field">
+                <label for="amount" id="amount" class="amount">Amount</label><br>
+                <input type="number" name="amount" id="amount" class="amount" formControlName="amount">
+                <div *ngIf="shoppingEdit.controls['amount']?.touched">                
+                    <div class="errorForm" *ngIf="amount?.errors?.['required']">
+                        {{amountValidator}}
+                    </div>
+                    <div class="errorForm" *ngIf="amount?.errors?.['min']">
+                        {{minAmountValidator}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btns">
+            <button type="submit" class="add btn" [disabled]="shoppingEdit.invalid" >Add</button>
+            <button type="delete" class="delete btn">Delete</button>
+            <button type="clear" class="clear btn">Clear</button>
+        </div>
+       
+    </form> -->
+
+    <!-- <form [formGroup]="shopEditForm" (ngSubmit)="onSubmit()">
+        <div class="form-flex">
+            <div class="form-field">
+                <label for="name" id="name" class="name">Name</label><br>
+                <input type="text" name="name" id="name" class="name" #nameInput>
+                <input type="text" name="name" id="name" class="name" formControlName="name">
+                
+                
+            </div>
+            
+            <div class="form-field">
+                <label for="amount" id="amount" class="amount">Amount</label><br>
+                <input type="number" name="amount" id="amount" class="amount" #amountInput>
+                <input type="number" name="amount" id="amount" class="amount" formControlName="amount">
+                
+            </div>
+        </div>
+        <button type="submit" class="add btn" [disabled]="shopEditForm.invalid">Add</button>
+        <div class="btns">
+            
+            <button type="delete" class="delete btn">Delete</button>
+            <button type="clear" class="clear btn">Clear</button>
+        </div>
+
+    </form> -->
+<!-- Template Forms -->
+
+<form #shop="ngForm" (ngSubmit)="onSubmit(shop)">
+    <div class="form-flex">
+            <div class="form-field">
+                <label for="name" id="name" class="name">Name</label><br>
+                <input type="text" name="name" id="name" class="name" name="name" ngModel required>
+                <!-- <div  *ngIf="shoppingEdit.controls['name']?.touched">
+                    <div class="errorForm" *ngIf="name?.errors?.['required']">
+                        {{nameValidator}}
+                    </div>
+                </div> -->
+            </div>
+            <div class="form-field">
+                <label for="amount" id="amount" class="amount">Amount</label><br>
+                <input type="number" name="amount" id="amount" class="amount" name="amount" ngModel 
+                required
+                pattern="^[1-9]+[0-9]*$">
+                <!-- <div  *ngIf="shoppingEdit.controls['name']?.touched">
+                    <div class="errorForm" *ngIf="name?.errors?.['required']">
+                        {{nameValidator}}
+                    </div>
+                </div> -->
+            </div>
+           
+        <div class="btns">
+            <button type="submit" class="btn" [disabled]="!shop.valid">{{editMode? "Update": "Add"}}</button>
+            <button type="button" class="delete btn" (click)="onDeleteCart()">Delete</button>
+            <button type="button" class="clear btn" (click)="onClearCart()">Clear</button>
+        </div>
+            <!-- <button type="submit" [disabled]="!shop.valid">Submit</button> -->
+
+    </div>
+</form>
+</div>

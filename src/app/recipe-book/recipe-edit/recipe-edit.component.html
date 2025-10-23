@@ -1,0 +1,33 @@
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <div>
+        <div>
+            <button type="submit" [disabled]="recipeForm.invalid">{{editMode? "Update":"Add"}}</button>
+            <button type="button" (click)="clearForm()">Clear</button>
+        </div>
+        <div class="form-item">
+            <label for="rName">Recipe Name</label> <br>
+            <input type="text" name="rNmae" id="rName" formControlName="name">
+        </div>
+        <div>
+            <label for="imagePath">Image Url</label><br>
+            <input type="text" name="imagePath" id="imagePath" formControlName="imagePath" #imagePath>
+        </div>
+        <div class="">
+            <img [src]="imagePath.value" alt="Image" width="100px" height="100px">
+        </div>
+        <div>
+            <label for="description">Description</label><br>
+            <textarea rows="6" formControlName="description"></textarea>
+        </div>
+    </div>
+    <div formArrayName="ingredients" >
+        <div class="" *ngFor="let ingCOntrol of ingredientsControls;let i=index;" 
+        [formGroupName]="i">
+        <input type="text" formControlName="name" >
+        <input type="number"  formControlName="amount">
+        <button type="button" (click)="closeIngredient(i)">X</button>
+        </div>
+        <button type="button" (click)="addIngredient()">Add Ingredient</button>
+        
+    </div>
+</form>
