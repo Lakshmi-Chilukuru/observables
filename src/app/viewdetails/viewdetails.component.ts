@@ -12,8 +12,8 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class ViewdetailsComponent implements OnInit {
   @Input() toDo!:toDoReference
-  changeText:string ="I am not changed"
-  asyncData$!:Observable<String>; 
+  changeText ="I am not changed"
+  asyncData$!:Observable<string>; 
   constructor(private rS:RootService,private cd:ChangeDetectorRef){
     this.asyncData$ = this.rS.text$
   }

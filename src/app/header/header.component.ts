@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, TemplateRef, ViewChild,Output, OnDestroy } from '@angular/core';
-import { map, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { DataStorageService } from '../shared/data-storage.service';
 import { AuthService } from '../auth/auth.service';
 
@@ -9,23 +9,20 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.less']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent{
   public caretValue:any
-  caretTop:boolean =true ;
+  caretTop =true ;
   caretBottom!:boolean;
   public fetchrecipeData:any;
   // public hideMenus: boolean =false;
   // @Output() featureName=new EventEmitter<string>();
   showMenu: any;
-  public authenticated: boolean =false;
+  public authenticated =false;
   public subscribeAuth!: Subscription;
-  public logOuti:boolean = false
+  public logOuti = false
 
   constructor(private http:HttpClient,private stService:DataStorageService,private auth:AuthService){}
-  ngOnInit(): void {
-    // this.authe()
-    
-  }
+  
   // manageCaret(){
   //   this.caretBottom= !this.caretBottom;
   //   this.caretTop= !this.caretTop;
@@ -82,7 +79,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
   //   })
   // }
 
-  ngOnDestroy(): void {
-    this.subscribeAuth.unsubscribe();
-  }
+  
 }

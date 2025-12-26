@@ -42,7 +42,7 @@ export class AppInterceptor implements HttpInterceptor{
                         console.log(eventUrl)
                     }
                 },
-                error:(error)=>{
+                error:()=>{
                     catchError((error)=>{
                     if(error.status == Errors[error.status]){
                         console.log("Err Status:" + error.status)

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthResponseData, AuthService } from './auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 
@@ -10,13 +10,12 @@ import { Observable } from 'rxjs';
   templateUrl: './auth.component.html',
   styleUrls: ['auth.component.less'],
 })
-export class AuthComponent implements OnInit {
-  public isLoginMode: boolean = true;
-  public isLoading: boolean = false;
-  public error: string = '';
+export class AuthComponent {
+  public isLoginMode = true;
+  public isLoading = false;
+  public error = '';
 
   constructor(private authService: AuthService,private router:Router) {}
-  ngOnInit(): void {}
 
   switchMode() {
     this.isLoginMode = !this.isLoginMode;

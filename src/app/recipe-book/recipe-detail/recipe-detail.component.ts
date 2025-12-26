@@ -30,7 +30,7 @@ const ComponentComnfig =[
 })
 export class RecipeDetailComponent implements OnInit{
   public caretValue:any
-  caretTop :boolean =true;
+  caretTop  =true;
   caretBottom!:boolean ;
   public id!:number;
   // public hideMenus!: boolean;   without directives

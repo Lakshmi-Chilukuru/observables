@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class TemplateComponent {
   constructor(private router:Router){}
-  private static id:number =1;
+  private static id =1;
 
   user : User ={
     cname:'',

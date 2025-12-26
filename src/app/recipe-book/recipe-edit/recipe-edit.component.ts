@@ -23,7 +23,7 @@ import { DataStorageService } from 'src/app/shared/data-storage.service';
 export class RecipeEditComponent implements OnInit {
   id!: number;
   recipe!: Recipe;
-  editMode: boolean = false;
+  editMode = false;
   recipeForm!: FormGroup;
   shopList!: Ingredient;
   constructor(
@@ -52,7 +52,7 @@ export class RecipeEditComponent implements OnInit {
     let recipeName = '';
     let recipePath = '';
     let recipeDescription = '';
-    let recipeIngredients: any = new FormArray([]);
+    const recipeIngredients: any = new FormArray([]);
 
     if (this.editMode) {
       this.recipe = this.resService.getRecipe(this.id);
@@ -61,7 +61,7 @@ export class RecipeEditComponent implements OnInit {
       recipePath = this.recipe.imagePath;
       recipeDescription = this.recipe.description;
       if (this.recipe['ingredients']) {
-        for (let ingredient of this.recipe.ingredients) {
+        for (const ingredient of this.recipe.ingredients) {
           recipeIngredients.push(
             new FormGroup({
               'name': new FormControl(ingredient.name, Validators.required),
@@ -112,7 +112,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   addIngredient(){
-    (<FormArray>this.recipeForm.get('ingredients')).push(
+    (this.recipeForm.get('ingredients') as FormArray).push(
       new FormGroup({
         'name': new FormControl(Validators.required),
         'amount':new FormControl(Validators.required,Validators.pattern(/^[1-9]+[0-9]*$/))
@@ -121,7 +121,7 @@ export class RecipeEditComponent implements OnInit {
 
   }
   closeIngredient(index:number){
-    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index)
+    (this.recipeForm.get('ingredients') as FormArray).removeAt(index)
   }
 
  

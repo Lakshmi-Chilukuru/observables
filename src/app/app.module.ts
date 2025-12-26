@@ -18,7 +18,6 @@ import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.compo
 import { RecipeService } from './recipe-book/recipe.service';
 import { RecipeDesc } from './recipe-book/recipe.pipe';
 import { FilterPipe } from './recipe-book/recipeFilter.pipe';
-import { Pipe } from "@angular/core";
 import { DataStorageService } from './shared/data-storage.service';
 import { AuthComponent } from './auth/auth.component';
 import { LoaderComponent } from './shared/loader.component';

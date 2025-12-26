@@ -1,16 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { employeeType, toDoReference } from './employee';
+import {Component } from '@angular/core';
+import {  toDoReference } from './employee';
 import { RootService } from './root.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
   public empData:any =[];
-  public selectedFeature:string='shoppinglist';
+  public selectedFeature='shoppinglist';
   public todos :toDoReference[] =[
     {
       name:"lakshmi",
@@ -32,16 +31,12 @@ export class AppComponent implements OnInit{
   }
 
   title = 'observables';
-  ngOnInit(): void {
-    // this.getEmpData();
-  }
+ 
   changeData(){
     this.todos[0] = {...this.todos[0] ,text : "foooo"}
   }
 
-  fromAsync(){
 
-  }
 
   
 

@@ -19,15 +19,15 @@ export class RecipeListComponent implements OnInit,OnDestroy{
   public getRecipes:any;
   subscription!: Subscription;
   eventValue: any;
-  counter: number =0;
-  flag: boolean = true;
+  counter =0;
+  flag = true;
   cards:any[] =[]
   randCards: any;
   notifications: any[]=[];
   upNotify: any[]=[];
   nNotify: any[]=[];
-  currentPage: number =0;
-  NotSize: number =50;
+  currentPage =0;
+  NotSize =50;
   stockData: any[] =[];
   months: any;
   sstrocks: any;
@@ -102,7 +102,7 @@ this.onscRoll();
   // }));
 
   for(let i=0;i<100;i++){
-    let monthFor =Math.floor(Math.random()*10);
+    const monthFor =Math.floor(Math.random()*10);
     const dayFor = Math.floor(Math.floor(Math.random()*62)/2);
     // let day;
     // if(dayFor==0){
@@ -111,8 +111,8 @@ this.onscRoll();
     //   day =dayFor
     // }
     const day = dayFor!=0?dayFor:Math.floor(Math.floor(Math.random()*62)/2);
-    let date= `${day}-${this.months[monthFor]}-2000`
-    let obj:any={}
+    const date= `${day}-${this.months[monthFor]}-2000`
+    const obj:any={}
     obj.ldate =date;
     obj.id =i+1;
     this.stockData.push(obj);
@@ -150,7 +150,7 @@ this.onscRoll();
   }
   shuffle(){
     for(let i=this.randCards.length-1;i>0;i--){
-      let a = Math.floor(Math.random()*(i+1));
+      const a = Math.floor(Math.random()*(i+1));
       [this.randCards[i],this.cards[a]]=[this.cards[a],this.cards[i]]
     }
     return this.randCards;
@@ -179,7 +179,7 @@ this.onscRoll();
 
   getMonth(e:any){
 
-    let stocks = e.target.value;
+    const stocks = e.target.value;
     this.sstrocks = this.stockData
     this.sstrocks = this.sstrocks.filter((s:any)=>{
       return s.ldate.includes(stocks)
@@ -223,7 +223,7 @@ this.onscRoll();
     },1000)
   }
   debounce(event:any){
-    let eventValue = this.counter++;
+    const eventValue = this.counter++;
     // console.log("counter " + eventValue )
  
   }

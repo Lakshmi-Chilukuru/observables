@@ -3,14 +3,14 @@ export class RecurrencePatternGeneratorComponent{
 
   weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
-  pattern: string = 'daily';
-  time: string = '12:00';
-  date: string = '1';
-  selectedDays: { [key: string]: boolean } = {
+  pattern = 'daily';
+  time = '12:00';
+  date = '1';
+  selectedDays: Record<string, boolean> = {
     monday: false, tuesday: false, wednesday: false,
     thursday: false, friday: false, saturday: false, sunday: false
   };
-  description: string = '';
+  description = '';
 
   ngOnInit() {
     this.generateDescription();

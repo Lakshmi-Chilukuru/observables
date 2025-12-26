@@ -1,20 +1,17 @@
-import {Directive, EventEmitter, HostBinding, HostListener, Input, OnInit, Output} from '@angular/core'
+import {Directive, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core'
 
 @Directive({
     selector : '[dropDownDir]'
 })
 
-export class DropDownDir implements OnInit{
+export class DropDownDir{
     constructor(){}
-    isActive :boolean = false;
+    isActive  = false;
     @Input() caretTop!:boolean ;
-    caretBottom:boolean = false;
-    hideMenus: boolean =false;
+    caretBottom = false;
+    hideMenus =false;
     @Output() hidingMenus = new EventEmitter<any>()
 
-    ngOnInit(): void {
-        
-    }
 
     @HostListener('click') activate(){
         this.isActive = !this.isActive

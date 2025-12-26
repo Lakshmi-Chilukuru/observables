@@ -21,10 +21,10 @@ export class ShoppingListEditComponent implements OnInit,OnDestroy{
   @ViewChild('nameInput', { static: false })  nameInputRef!: ElementRef;
   @ViewChild('amountInput', { static: false })  amountInputRef!: ElementRef;
   @ViewChild('shop') slForm!:NgForm;
-  public nameValidator:string ='Name is Required';
-  public amountValidator:string ='Amount is Required';
-  public minAmountValidator:string='Minimum Amount atleast Rupee should mention the cost'
-  editMode: boolean =false;
+  public nameValidator ='Name is Required';
+  public amountValidator ='Amount is Required';
+  public minAmountValidator='Minimum Amount atleast Rupee should mention the cost'
+  editMode =false;
   editIndexItem!: number;
   editedItem!:Ingredient
   constructor(private fb:FormBuilder,private ingSerivce:ShoppingService){

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, delay, pipe, Subject, take, tap, throwError } from 'rxjs';
+import { catchError, delay,  Subject,  tap, throwError } from 'rxjs';
 import { User } from '../shared/user';
 import { Router } from '@angular/router';
 export interface AuthResponseData {
