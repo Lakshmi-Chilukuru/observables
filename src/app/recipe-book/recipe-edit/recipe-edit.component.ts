@@ -56,7 +56,7 @@ export class RecipeEditComponent implements OnInit {
 
     if (this.editMode) {
       this.recipe = this.resService.getRecipe(this.id);
-      console.log(this.recipe.ingredients);
+     
       recipeName = this.recipe.name;
       recipePath = this.recipe.imagePath;
       recipeDescription = this.recipe.description;
@@ -99,7 +99,7 @@ export class RecipeEditComponent implements OnInit {
     else{
       this.resService.onAddItem([newRecipe]);
       this.http.post('https://shopitem-bcc1b-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json',[newRecipe]).subscribe((res)=>{
-        console.log(res)
+       
       })
     }
     

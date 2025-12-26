@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {employeeType} from './employee'
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import {map,catchError} from 'rxjs/operators'
 
 // import 'rxjs/add/operator'
@@ -12,6 +12,8 @@ import {map,catchError} from 'rxjs/operators'
 })
 export class RootService {
   // private _url:string = 'localhost:3000/polls'
+  public text$ = new BehaviorSubject<string>("data");
+  public showLoader$ = new BehaviorSubject<boolean>(false)
 
   constructor(private http:HttpClient) { }
 

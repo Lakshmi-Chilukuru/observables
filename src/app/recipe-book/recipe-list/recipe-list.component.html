@@ -5,7 +5,7 @@
   <div class="hr">
     <hr />
   </div>
-  <div class="d">
+  <div class="d" style="height: 300px; overflow-y: scroll;">
     <app-recipe-item
       *ngFor="let recipeEl of recipes; let i = index"
       [recipe]="recipeEl"
@@ -14,8 +14,12 @@
   </div>
 </div>
 
-<input type="text" (input)="inputChange($event)" />
-<div class="cards" >
+<input type="text" [(ngModel)]="twoWayName"/>
+
+<input type="text" name="" id="" [value]="twoWayName" (keyup)="onChangeKey($event)">
+<input type="text" [ngModel]="twoWayName" (ngModelChange)="modelChange($event)"/>
+{{twoWayName}}
+<!-- <div class="cards" >
   <div class="card" *ngFor="let card of randCards">
     <div class="card-inner">
       <div class="card-front">
@@ -53,5 +57,5 @@
 </div>
 
 <ul id="todos"></ul>
-<button id="adBtn">Add List</button>
+<button id="adBtn">Add List</button> -->
 

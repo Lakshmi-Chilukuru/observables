@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map, Subscription, timer } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { RootService } from 'src/app/root.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -29,20 +31,32 @@ export class RecipeListComponent implements OnInit,OnDestroy{
   stockData: any[] =[];
   months: any;
   sstrocks: any;
+   rawData = ["lakshmi", true, false, "FCU", true];
+
+  displayedColumns = ['index', 'value'];
+  dataSource:any;
+  public twoWayName?:string ="initialString";
+  public loader!:boolean ;
 
  
-  constructor(private rS:RecipeService,private stService:DataStorageService,private router:Router,private AcRoute:ActivatedRoute,private http:HttpClient){
+  constructor(private rS:RecipeService,private rootS:RootService,private stService:DataStorageService,private router:Router,private AcRoute:ActivatedRoute,private http:HttpClient){
 this.onscRoll(); 
+
+    console.log(this.rS.todayDate(), this.rS.getTomorrow(), this.rS.getYesterday())
   }
   ngOnInit(): void {  
-    
+
+
+    this.dataSource = new MatTableDataSource<any>(this.rawData.map((v, i) => ({
+    index: i,
+    value: v
+  })));
    this.fetchRecipes()
  
     this.subscription =this.rS.recipeAdded.subscribe((data:Recipe[])=>{
       this.recipes =data;
     })
     this.recipes =this.rS.getRecipes()
-    console.log(this.recipes)
 
     this.cards =[
       {
@@ -72,7 +86,6 @@ this.onscRoll();
     id: k + 1,
     message: `Notification #${k + 1}`
   }));
-  console.log(this.notifications)
   this.nNotify = this.notifications
   this.upNotify =this.notifications.splice(0,50)
   
@@ -105,12 +118,15 @@ this.onscRoll();
     this.stockData.push(obj);
     
   }
-  console.log(this.stockData)
   this.sstrocks = this.stockData
   
   
   // console.log(this.months[monthFor])
-  
+  this.rS.getUsers().subscribe((res)=>console.log(res))
+  this.rootS.showLoader$.subscribe((value=>{
+    this.loader = value;
+    console.log(this.loader)
+  }))
   
   }
 
@@ -142,7 +158,6 @@ this.onscRoll();
   loadMore(){
     this.currentPage=0;
     this.NotSize=50;
-    console.log(this.currentPage)
     const start =this.currentPage*this.NotSize;
     const end = start +this.NotSize;
     if(this.nNotify.length>0){
@@ -163,13 +178,13 @@ this.onscRoll();
   }
 
   getMonth(e:any){
-    console.log(e.target.value)
+
     let stocks = e.target.value;
     this.sstrocks = this.stockData
     this.sstrocks = this.sstrocks.filter((s:any)=>{
       return s.ldate.includes(stocks)
     })
-    console.log(this.sstrocks)
+    
   }
   trackById(index:number,item:any){
     return item.id
@@ -210,9 +225,16 @@ this.onscRoll();
   debounce(event:any){
     let eventValue = this.counter++;
     // console.log("counter " + eventValue )
-    console.log(event.target.value);
+ 
   }
 
+  onChangeKey(event:any){
+    
+    this.twoWayName = event.target.value
+  }
+  modelChange(value:any){
+    this.twoWayName = value
+  }
   
 
   ngOnDestroy(): void {

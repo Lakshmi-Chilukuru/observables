@@ -12,3 +12,9 @@ export class Recipe{
         this.ingredients = ingredients
     }
 }
+
+export interface UserInterface{
+    id:string,
+    name:string,
+    age:number
+}

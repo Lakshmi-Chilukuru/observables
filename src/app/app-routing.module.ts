@@ -13,6 +13,7 @@ import { AuthComponent } from './auth/auth.component';
 import { authGuard } from './shared/auth.guard';
 import { TemplateComponent } from './template/template.component';
 import { ReactiveComponent } from './reactive/reactive.component';
+import { ViewdetailsComponent } from './viewdetails/viewdetails.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,9 @@ const routes: Routes = [
   },
   {
     path :'reactive',component:ReactiveComponent
+  },
+  {
+    path:'viewdetails',component:ViewdetailsComponent
   }
 ];
 

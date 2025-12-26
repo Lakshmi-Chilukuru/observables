@@ -1,0 +1,14 @@
+{{toDo.text}}br
+
+
+<p colorDir>{{componentCheck()}}</p>
+
+{{changeText}}br
+
+<button (click)="changeTexti()" >Update</button><br>
+
+
+FilterText : {{asyncData$ | async}}br
+    <button (click)="fromAsync()">Asynced</button>
+
+<button (click)="reAtach()">reAtach</button>

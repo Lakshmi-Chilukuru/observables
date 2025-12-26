@@ -51,7 +51,7 @@ export class RecipeItemComponent implements OnInit {
 
   }
    ngOnInit(): void {
-     console.log(this.recipe)
+     
    }
    addItem(){
     this.items.push({

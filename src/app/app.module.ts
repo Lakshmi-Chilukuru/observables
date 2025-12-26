@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
@@ -30,6 +30,10 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TemplateComponent } from './template/template.component';
 import { ReactiveComponent } from './reactive/reactive.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
+import { ViewdetailsComponent } from './viewdetails/viewdetails.component';
+import { AppInterceptor } from './app.interceptor';
+import { ChangeColorDirective } from './color.directive';
 
 @NgModule({
   declarations: [
@@ -51,20 +55,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CounterOutputComponent,
     CounterControlsComponent,
     TemplateComponent,
-    ReactiveComponent
+    ReactiveComponent,
+    ViewdetailsComponent,
+    ChangeColorDirective
   ],
   imports: [
     BrowserModule,
     ScrollingModule,
     AppRoutingModule,
-
+MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({counter:counterReducer}),
     BrowserAnimationsModule,
   ],
-  providers: [ShoppingService, RecipeService,DataStorageService],
+  providers: [ShoppingService, RecipeService,DataStorageService,
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

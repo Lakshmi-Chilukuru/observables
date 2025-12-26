@@ -2,7 +2,9 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shopping-list/shopping-list.model';
 import { ShoppingService } from '../shopping-list/shopping.service';
-import { Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
+import { UserInterface } from './recipe.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +26,7 @@ export class RecipeService {
       [new Ingredient('Jam', 50), new Ingredient('Grapes', 45)]
     ),
   ];
-  constructor(private sService: ShoppingService) {}
+  constructor(private sService: ShoppingService,private http:HttpClient) {}
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
@@ -51,5 +53,28 @@ export class RecipeService {
   deleteRecipe(index: number) {
     this.recipes.splice(index, 1);
     this.recipeAdded.next(this.recipes.slice());
+  }
+
+  todayDate():Date{
+    const dateStamp = new Date().setHours(0,0,0,0)
+    return new Date(dateStamp)
+  }
+  getTomorrow():Date{
+    const tomorrow = this.todayDate();
+    return new Date(tomorrow.setDate(tomorrow.getDate() +1))
+  }
+
+  getYesterday():Date{
+    const tomorrow = this.todayDate();
+    return new Date(tomorrow.setDate(tomorrow.getDate() - 1))
+  }
+
+  getUsers() :Observable<UserInterface[]>{
+  return this.http.get<UserInterface[]>('http://localhost:3240/user').pipe(map((users:any)=>users))
+  
+  //return users$.pipe(map((users:any)=>users.map((user:any)=>user.name)))
+  // }
+    
+    // return users$.pipe(map((users:any)=>users.map((user:UserInterface)=>user)))
   }
 }

@@ -1,1 +1,35 @@
-<p>template works!</p>
+<h4>Template Driven Forms</h4>
+
+<form #tForm="ngForm" (ngSubmit)="onSubmit(tForm,user)">
+    <div class="name" id="name">
+        <label for="name" id="name" class="name">Name:</label><br>
+        <input type="text" id="name" class="name" name="name" [(ngModel)]=user.name #name="ngModel" required minlength="3" maxlength="10">
+    </div>
+    <div class="" *ngIf="name.invalid && name.touched">
+        <span *ngIf="name.errors?.['required']">Name is Required</span>
+        <span *ngIf="name.errors?.['minlength']">name should be more than 3 characters</span>
+        <span *ngIf="name.errors?.['maxlength']">Name should be less than 10 characters</span>
+    </div>
+    
+    <div class="tname" id="tname">
+        <label for="tname" id="tname" class="tname">Team Name:</label><br>
+        <input type="text" id="tname" class="tname" name="tname" [(ngModel)]=user.tname  #tname="ngModel" required minlength="3" maxlength="10">
+    </div>
+    <div class="" *ngIf="tname.invalid && tname.touched">
+        <span *ngIf="tname.errors?.['required']">Name is Required</span>
+        <span *ngIf="tname.errors?.['minlength']">name should be more than 3 characters</span>
+        <span *ngIf="tname.errors?.['maxlength']">Name should be less than 10 characters</span>
+    </div>
+
+    <div class="cname" id="cname">
+        <label for="cname" id="cname" class="cname">Coach Name:</label><br>
+        <input type="text" id="cname" class="cname" name="cname" [(ngModel)]=user.cname #cname="ngModel" required minlength="3" maxlength="10">
+    </div>
+    <div class="" *ngIf="cname.invalid && cname.touched">
+        <span *ngIf="cname.errors?.['required']">Name is Required</span>
+        <span *ngIf="cname.errors?.['minlength']">name should be more than 3 characters</span>
+        <span *ngIf="cname.errors?.['maxlength']">Name should be less than 10 characters</span>
+    </div>
+   <button type="submit">Save</button>
+
+</form>
