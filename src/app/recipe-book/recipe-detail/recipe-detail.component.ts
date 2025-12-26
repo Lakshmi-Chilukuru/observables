@@ -57,7 +57,7 @@ export class RecipeDetailComponent implements OnInit{
 
   // with services
   addShopList(){
-    this.resService.addRecIngrdient(this.recipe.ingredients)
+    this.resService.addRecIngrdient(this.recipe?.ingredients)
     this.navRouter.navigate(['/shopList'])
   }
   onEditRecipe(){

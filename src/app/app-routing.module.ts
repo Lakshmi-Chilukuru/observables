@@ -13,9 +13,6 @@ import { ViewdetailsComponent } from './viewdetails/viewdetails.component';
 
 const routes: Routes = [
   {
-    path:'',component:RecipeBookComponent,
-  },
-  {
     path:'recipes',component:RecipeBookComponent,
     children :[
       {

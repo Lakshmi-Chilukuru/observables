@@ -39,7 +39,7 @@ export class RecipeService {
     return this.recipes[index];
   }
   addRecIngrdient(ingredients: Ingredient[]) {
-    this.sService.addIngredient(ingredients);
+    this.sService.addIngredient(ingredients?ingredients :[]);
   }
   onAddItem(recipes: Recipe[]) {
     this.recipes.push(...recipes);
