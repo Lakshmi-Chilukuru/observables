@@ -17,7 +17,7 @@ import { ViewdetailsComponent } from './viewdetails/viewdetails.component';
 
 const routes: Routes = [
   {
-    path:'', redirectTo: '/recipes' ,pathMatch:'full'
+    path:'',component:RecipeBookComponent,
   },
   {
     path:'recipes',component:RecipeBookComponent,
@@ -58,6 +58,9 @@ const routes: Routes = [
   },
   {
     path:'viewdetails',component:ViewdetailsComponent
+  },
+  {
+    path:'', redirectTo: '/recipes' ,pathMatch:'full'
   }
 ];
 
