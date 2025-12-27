@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe.model';
-import { Observable } from 'rxjs';
 import {
   FormArray,
   FormBuilder,
@@ -112,10 +111,11 @@ export class RecipeEditComponent implements OnInit {
   }
 
   addIngredient(){
-    (this.recipeForm.get('ingredients') as FormArray).push(
+    const data = this.recipeForm.get('ingredients') as FormArray
+    data.push(
       new FormGroup({
-        'name': new FormControl(Validators.required),
-        'amount':new FormControl(Validators.required,Validators.pattern(/^[1-9]+[0-9]*$/))
+        'name': new FormControl('',Validators.required),
+        'amount':new FormControl('',[Validators.required,Validators.pattern(/^[1-9]+[0-9]*$/)])
       })
     )
 
