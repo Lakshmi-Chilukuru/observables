@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href /observables/",
+    "deploy": "npm run build && cp dist/observables/index.html dist/observables/404.html && npx gh-pages -d dist/observables",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
