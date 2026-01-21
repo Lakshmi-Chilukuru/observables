@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,APP_INITIALIZER, ErrorHandler  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +33,9 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/mater
 import { ViewdetailsComponent } from './viewdetails/viewdetails.component';
 import { AppInterceptor } from './app.interceptor';
 import { ChangeColorDirective } from './color.directive';
+import * as Sentry from "@sentry/angular";
+import { Router } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -71,7 +74,21 @@ MatFormFieldModule,
   ],
   providers: [ShoppingService, RecipeService,DataStorageService,
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
-    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler(),
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => {},
+      deps: [Sentry.TraceService],
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
