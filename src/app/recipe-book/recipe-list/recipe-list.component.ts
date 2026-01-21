@@ -122,7 +122,6 @@ this.onscRoll();
   
   
   // console.log(this.months[monthFor])
-  this.rS.getUsers().subscribe((res)=>console.log(res))
   this.rootS.showLoader$.subscribe((value=>{
     this.loader = value;
     console.log(this.loader)

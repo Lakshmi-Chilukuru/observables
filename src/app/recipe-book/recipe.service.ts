@@ -68,13 +68,5 @@ export class RecipeService {
     const tomorrow = this.todayDate();
     return new Date(tomorrow.setDate(tomorrow.getDate() - 1))
   }
-
-  getUsers() :Observable<UserInterface[]>{
-  return this.http.get<UserInterface[]>('http://localhost:3240/user').pipe(map((users:any)=>users))
   
-  //return users$.pipe(map((users:any)=>users.map((user:any)=>user.name)))
-  // }
-    
-    // return users$.pipe(map((users:any)=>users.map((user:UserInterface)=>user)))
-  }
 }
