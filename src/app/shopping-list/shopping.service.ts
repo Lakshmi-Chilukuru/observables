@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { Ingredient } from "./shopping-list.model";
+import { HttpClient } from "@angular/common/http";
 
 
 @Injectable({
@@ -8,8 +9,10 @@ import { Ingredient } from "./shopping-list.model";
 })
 
 
-export class ShoppingService {
 
+export class ShoppingService {
+    private countValue = new BehaviorSubject<number>(0);
+    public ccOunt = this.countValue.asObservable();
     
     public itemsAdded = new Subject<Ingredient[]>()
     public editSelected = new Subject<any>()
@@ -18,6 +21,15 @@ export class ShoppingService {
         new Ingredient('Apple',50),
         new Ingredient('Mango',70)
     ]
+    constructor(private http:HttpClient){}
+    incRxjsValue(){
+        this.countValue.next(this.countValue.value+1);
+    }
+
+    decRxjsValue(){
+        this.countValue.next(this.countValue.value-1);
+
+    }
     
 
     getIngredients(){
@@ -52,6 +64,10 @@ export class ShoppingService {
     decrement(value:number){
         value--;
         this.counterValue.next(value)
+    }
+
+    getDepData(){
+        return this.http.get('https://api.freeprojectapi.com/api/EmployeeApp/GetDepartments');
     }
     
    

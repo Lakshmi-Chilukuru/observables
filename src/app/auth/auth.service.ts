@@ -18,7 +18,7 @@ export interface AuthResponseData {
 export class AuthService {
   public user= new Subject<User>();
   public authenticate = new Subject();
-  expirationTimer: any;
+  expirationTimer: number | null | undefined;
   constructor(private http: HttpClient ,private router:Router) {}
   api_keySignUp =
     'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyC6Be57GlVkYnIO4MpOwz3mkHxPW6e1juE';

@@ -33,9 +33,12 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/mater
 import { ViewdetailsComponent } from './viewdetails/viewdetails.component';
 import { AppInterceptor } from './app.interceptor';
 import { ChangeColorDirective } from './color.directive';
+
 import * as Sentry from "@sentry/angular";
 import { Router } from '@angular/router';
-
+import { CurrencyDirective } from './directives/currency-directive';
+import { TokenInterceptor } from './token.interceptor';
+// import { SharedUiComponent } from 'shared-ui'
 
 @NgModule({
   declarations: [
@@ -59,7 +62,8 @@ import { Router } from '@angular/router';
     TemplateComponent,
     ReactiveComponent,
     ViewdetailsComponent,
-    ChangeColorDirective
+    ChangeColorDirective,
+    CurrencyDirective
   ],
   imports: [
     BrowserModule,
@@ -75,6 +79,7 @@ MatFormFieldModule,
   providers: [ShoppingService, RecipeService,DataStorageService,
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     {
       provide: ErrorHandler,
       useValue: Sentry.createErrorHandler(),

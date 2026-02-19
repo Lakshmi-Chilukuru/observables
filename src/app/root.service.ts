@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {employeeType} from './employee'
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import {map,catchError} from 'rxjs/operators'
+import {map,catchError, shareReplay} from 'rxjs/operators'
 
 // import 'rxjs/add/operator'
 
@@ -13,12 +13,17 @@ import {map,catchError} from 'rxjs/operators'
 export class RootService {
   // private _url:string = 'localhost:3000/polls'
   public text$ = new BehaviorSubject<string>("data");
-  public showLoader$ = new BehaviorSubject<boolean>(false)
+  public showLoader$ = new BehaviorSubject<boolean>(false);
+  private user$ : Observable<any> | undefined;
 
   constructor(private http:HttpClient) { }
 
+  
+  getApi(){
+    this.http.get<any>('https://jsonplaceholder.typicode.com/usrs')
+  }
   // getQuestion():Observable<any>{
-  //   return this.http.get<any>(`${this._url}/fetch`)
+  //   return this.http.get<any>(`${this._url}/fetch`) 
   // }
 
   // createPoll(data:any):Observable<any>{

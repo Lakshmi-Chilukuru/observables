@@ -1,17 +1,23 @@
-<app-header ></app-header>
-<div class="">
-    <!-- <app-viewdetails *ngFor="let toDo of todos" [toDo]="toDo"></app-viewdetails><br>
-    <button (click)="changeData()">Chnage</button> -->
+<ng-container>
+    <div class="loginPage">
+        <form ></form>
+    </div>
+    <div class="nonLoginPage">
+        <app-header></app-header>
+        <div class="">
+            <!-- <app-viewdetails *ngFor="let toDo of todos" [toDo]="toDo"></app-viewdetails><br>
+            <button (click)="changeData()">Chnage</button> -->    
+        </div>
 
-    
-</div>
+        <div class="">
+            <router-outlet></router-outlet>
+            <!-- <app-recipe-book *ngIf="selectedFeature === 'recipe'"></app-recipe-book>
+            <hr>
+            <app-shopping-list *ngIf="selectedFeature === 'shoppinglist'"></app-shopping-list> -->
+        </div>
+    </div>
+</ng-container>
 
 
 
-<div class="">
-    <router-outlet></router-outlet>
-    <!-- <app-recipe-book *ngIf="selectedFeature === 'recipe'"></app-recipe-book>
-    <hr>
-    <app-shopping-list *ngIf="selectedFeature === 'shoppinglist'"></app-shopping-list> -->
-</div>
 

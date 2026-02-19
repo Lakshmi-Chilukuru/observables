@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Ingredient } from './shopping-list.model';
 import { ShoppingService } from './shopping.service';
-import { map, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Store } from '@ngrx/store';
+import { ICount } from './Store/data';
+import { select, Store } from '@ngrx/store';
+import { add, minus } from './Store/count.action';
+
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,10 +18,12 @@ export class ShoppingListComponent implements OnInit,OnDestroy {
   public subData!:Subscription;
   public index! :Subscription
   recipes: any;
-
+  public amount = 500000;
+  public count:number =0;
+  public sharedCount$ :BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public counter$: Observable<number>;
-  constructor(private ingService:ShoppingService,private http:HttpClient,private store:Store<{counter:number}>){
-    this.counter$ = this.store.select('counter')
+  constructor(private ingService:ShoppingService,private http:HttpClient,private store:Store<ICount>){
+    this.counter$ = this.store.pipe(select('count'))
   }
   ngOnInit(): void {
     this.ingredients =this.ingService.getIngredients()
@@ -39,6 +44,16 @@ export class ShoppingListComponent implements OnInit,OnDestroy {
   }
   getShopDetails(ingre:Ingredient){
     this.ingredients.push(ingre)
+  }
+
+  add(){
+    // this.ingService.incRxjsValue();
+    this.store.dispatch(add())
+  }
+
+  minus(){
+    // this.ingService.decRxjsValue();
+    this.store.dispatch(minus())
   }
   ngOnDestroy(): void {
     this.subData.unsubscribe()

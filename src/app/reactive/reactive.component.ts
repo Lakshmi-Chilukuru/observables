@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
   selector: 'app-reactive',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./reactive.component.less']
 })
 export class ReactiveComponent {
-
+public data$ !:Observable<any>;
+  constructor(private ds:DataStorageService){
+{
+   this.ds.getUsers().subscribe((val)=>{
+      console.log(val)
+    })
+}
+  }
 }

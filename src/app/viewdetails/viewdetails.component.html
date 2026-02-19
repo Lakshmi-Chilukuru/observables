@@ -1,4 +1,4 @@
-{{toDo.text}}br
+
 
 
 <p colorDir>{{componentCheck()}}</p>
@@ -12,3 +12,21 @@ FilterText : {{asyncData$ | async}}br
     <button (click)="fromAsync()">Asynced</button>
 
 <button (click)="reAtach()">reAtach</button>
+
+<button (click)="addComp()">Add Component</button>
+
+<ng-container #dynamo></ng-container>
+
+<app-counter-output>
+    <p>I am from ng-content</p>
+</app-counter-output>
+
+<app-counter-output>
+    <p ugly>I am from ugly</p>
+    <p>I am normal</p>
+</app-counter-output>
+
+
+<input type="text" [(ngModel)]="checkText" (keyup)="getValu()">
+
+<input type="text" name="searchField" id="searchField" [(ngModel)]="searchField" (keyup)="getValue()">

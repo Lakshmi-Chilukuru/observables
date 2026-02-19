@@ -7,9 +7,22 @@
     </a>
 </div>
 <p>Counter:{{counter$ | async}}</p>
-<app-counter-output></app-counter-output>
-<app-counter-controls></app-counter-controls>
+<input type="text" [(ngModel)]="amount" appCurrency>
+<app-counter-output>
+    <p>From Counter Output</p>
+    <p>----------------</p>
+</app-counter-output>
+<app-counter-controls>
+    <p>-----------------</p>
+    <p>From Control Component</p>
+    <p>-----------------</p>
+</app-counter-controls>
 
+
+<p>{{counter$ | async}}</p>
+
+<button (click)="add()">Add</button>
+<button (click)="minus()">Reduce</button>
 
 
 

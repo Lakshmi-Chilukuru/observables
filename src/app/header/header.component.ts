@@ -10,13 +10,11 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent{
-  public caretValue:any
   caretTop =true ;
   caretBottom!:boolean;
-  public fetchrecipeData:any;
   // public hideMenus: boolean =false;
   // @Output() featureName=new EventEmitter<string>();
-  showMenu: any;
+  showMenu!: boolean;
   public authenticated =false;
   public subscribeAuth!: Subscription;
   public logOuti = false

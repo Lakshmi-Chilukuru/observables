@@ -1,6 +1,7 @@
 import {Component } from '@angular/core';
 import {  toDoReference } from './employee';
 import { RootService } from './root.service';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,6 @@ import { RootService } from './root.service';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent{
-  public empData:any =[];
   public selectedFeature='shoppinglist';
   public todos :toDoReference[] =[
     {
@@ -27,7 +27,7 @@ export class AppComponent{
       text : "Third Task"
     }
   ]
-  constructor(private rS:RootService){
+  constructor(){
   }
 
   title = 'observables';

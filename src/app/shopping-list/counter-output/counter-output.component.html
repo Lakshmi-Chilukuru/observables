@@ -1,1 +1,12 @@
-<p>Counter:{{counter$ | async}}</p>
+<!-- <p>Counter:{{counter$ | async}}</p> -->
+
+<ng-content></ng-content>
+
+<ng-content select="ugly"></ng-content>
+
+<p>{{counteer$ | async}}</p>
+
+<button (click)="markCheck()">Check</button>
+<button (click)="detect()">Detect</button>
+<button (click)="detach()">Detach</button>
+<button (click)="reattach()">ReAttach</button>

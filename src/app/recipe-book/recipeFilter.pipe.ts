@@ -14,10 +14,7 @@ export class FilterPipe implements PipeTransform{
             for(const item of value){
                 if(item[searchName] == filteredName){
                 newArray.push(item)
-                
                 }
-            
-            
             }
            return newArray
         }

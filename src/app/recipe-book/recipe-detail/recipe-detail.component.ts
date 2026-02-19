@@ -42,11 +42,11 @@ export class RecipeDetailComponent implements OnInit{
   constructor(private resService:RecipeService,private router :ActivatedRoute,private navRouter :Router){}
   ngOnInit(): void {
   //  console.log(this.recipe)
-  this.router.params.subscribe((params:Params)=>{
-    this.id = +params['id'];
-    this.recipe = this.resService.getRecipe(this.id)
-  
-  })
+  this.id = Number(this.router.snapshot.paramMap.get('id'))
+  // this.router.params.subscribe((params:Params)=>{
+  //   this.id = +params['id'];
+  // })
+  this.recipe = this.resService.getRecipe(this.id)
   const id = this.router.snapshot.params['id']
   }
   hideMenus(event:any){
@@ -69,9 +69,10 @@ export class RecipeDetailComponent implements OnInit{
   }
 
   addDynamic(){
+    this.container.clear();
     const data = this.container.createComponent(dnComponent)
     data.instance.name = "lakshmi";
-    data.setInput('name','lakshmi')
+    // data.setInput('name','lakshmi')
   }
   componentConfig(){
       ComponentComnfig.forEach(async (kc)=>{

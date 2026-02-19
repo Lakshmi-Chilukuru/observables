@@ -1,11 +1,10 @@
-import {Directive, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core'
+import {Directive, EventEmitter, HostListener, Input, Output} from '@angular/core'
 
 @Directive({
     selector : '[dropDownDir]'
 })
 
 export class DropDownDir{
-    constructor(){}
     isActive  = false;
     @Input() caretTop!:boolean ;
     caretBottom = false;

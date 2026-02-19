@@ -33,9 +33,7 @@ export class AppInterceptor implements HttpInterceptor{
                         console.log("Api Response:" ,event)
                         eventUrl = event.url?.split('/');
                         eventUrl =eventUrl?.map(e=>{
-                            if(e == "recipes.json"){
-                                e = "recipes.json-el"
-                            }
+                           
                             return e;
                         })
                         eventUrl =eventUrl?.join('/')
